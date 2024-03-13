@@ -12,6 +12,8 @@ import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+
+
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = ({ history }) => {
@@ -27,7 +29,7 @@ const SiteHeader = ({ history }) => {
     { label: "Home", path: "/" },
     { label: "Favorites", path: "/movies/favorites" },
     { label: "Upcoming", path: "/upcoming" },
-    { label: "Option 4", path: "/" },
+    { label: "WishList", path: "/movies/playlist" },
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -42,10 +44,10 @@ const SiteHeader = ({ history }) => {
     <>
       <AppBar position="fixed" color="secondary">
         <Toolbar>
-          <Typography variant="h4" sx={{ flexGrow: 1 }}>
+          <Typography variant="h4" sx={{ flexGrow: 1, fontFamily: 'Montserrat' }}>
             TMDB Client
           </Typography>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Montserrat' }}>
             All you ever wanted to know about Movies!
           </Typography>
             {isMobile ? (

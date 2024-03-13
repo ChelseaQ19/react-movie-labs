@@ -9,6 +9,7 @@ import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
 import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
+import AddWishListPage from "./pages/addWishListPage";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
 
@@ -32,6 +33,7 @@ const App = () => {
         <Routes>
           <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
           <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
+          <Route path="/movies/playlists" element={<AddWishListPage />} />
           <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
           <Route path="/movies/:id" element={<MoviePage />} />
           <Route path="/upcoming" element={<UpcomingMoviesPage/>} />
