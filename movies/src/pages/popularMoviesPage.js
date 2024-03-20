@@ -1,15 +1,13 @@
-import VideoPlayer from "../components/VideoPlayer"
 import React from "react";
-import { getUpcomingMovies } from "../api/tmdb-api";
+import { getPopularMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import AddToPlaylistIcon from "../components/cardIcons/addToPlaylist";
-import MovieCard from "../components/movieCard"; //importing MovieCard component for reference to 'showAddToPlaylistIcon'.
 
-const UpcomingMoviesPage = (props) => {
+const PopularMoviesPage = (props) => {
 
-  const {  data, error, isLoading, isError }  = useQuery("upcoming", getUpcomingMovies)
+  const {  data, error, isLoading, isError }  = useQuery("popular", getPopularMovies)
 
   if (isLoading) {
     return <Spinner />
@@ -26,16 +24,13 @@ const UpcomingMoviesPage = (props) => {
   const addToPlaylist = (movieId) => true 
 
   return (
-    <div className="container"> 
     <PageTemplate
-      title="Upcoming Movies"
+      title="Popular Movies"
       movies={movies}
       action={(movie) => {
         return <AddToPlaylistIcon movie={movie} />
       }}
     />
-    <VideoPlayer />
-    </div>
 );
 };
-export default UpcomingMoviesPage;
+export default PopularMoviesPage;

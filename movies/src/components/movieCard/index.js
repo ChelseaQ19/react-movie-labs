@@ -16,9 +16,10 @@ import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import { MoviesContext } from "../../contexts/moviesContext";
+import AddToPlaylistIcon from '../cardIcons/addToPlaylist';
 
-export default function MovieCard({ movie, action }) {
-  const { favorites, addToFavorites } = useContext(MoviesContext);
+export default function MovieCard({ movie, action}) {
+  const { favorites, addToFavorites, playlists, addToPlaylist } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -26,10 +27,23 @@ export default function MovieCard({ movie, action }) {
     movie.favorite = false
   }
 
+  if (playlists.find((id) => id === movie.id)) {
+    movie.playlist = true;
+  } else {
+    movie.playlist = false
+  }
+
   const handleAddToFavorite = (e) => {
     e.preventDefault();
     addToFavorites(movie);
   };
+
+  const handleAddToPlaylist = (e) => {
+    e.preventDefault();
+    AddToPlaylistIcon(movie);
+  };
+
+ 
   
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -82,3 +96,4 @@ export default function MovieCard({ movie, action }) {
     </Card>
   );
 }
+
