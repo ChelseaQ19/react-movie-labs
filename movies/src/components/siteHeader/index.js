@@ -9,9 +9,18 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
-import { useTheme } from "@mui/material/styles";
+import { createTheme, useTheme } from "@mui/material/styles"; //Creating themes from Material UI
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+const theme = createTheme({ //creating typograhy themes from Material UI
+  typography: {
+    fontFamily: [
+      'Montserrat', 
+      'Arial', // Generalised Font
+      'sans-serif',
+    ].join(','),
+  },
+});
 
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
@@ -31,6 +40,8 @@ const SiteHeader = ({ history }) => {
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Playlist", path: "/movies/playlist" },
     { label: "Popular", path: "/movies/popular" },
+    { label: "Now Playing", path: "/movies/now_playing" },
+    { label: "Top Rated", path: "/movies/top_rated" },
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -43,12 +54,12 @@ const SiteHeader = ({ history }) => {
 
   return (
     <>
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" color="primary">
         <Toolbar>
-          <Typography variant="h4" sx={{ flexGrow: 1, fontFamily: 'Montserrat' }}>
+          <Typography variant="h4" sx={{ flexGrow: 1, fontFamily: 'Arial' , }}>
             TMDB Client
           </Typography>
-          <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Montserrat' }}>
+          <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Arial' }}>
             All you ever wanted to know about Movies!
           </Typography>
             {isMobile ? (

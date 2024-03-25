@@ -25,6 +25,33 @@ export const getUpcomingMovies = () => {
     });
 };
 
+export const getNowPlayingMovies = () => {
+  return fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&sort_by=release_date.asc`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+};
+
+
+export const getTopRatedMovies = () => {
+  return fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&sort_by=release_date.asc`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+};
+
 export const getPopularMovies = () => {
   return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&sort_by=release_date.asc`)
     .then((response) => {
@@ -99,3 +126,33 @@ export const getMovie = (args) => {
         return json.results;
       });
   };
+
+  export const getMovieCredits = (id) => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        // console.log(json.results);
+        return json.results;
+      });
+  };
+
+  //certificationlist from TMDB client, copied as 'fetch request'
+  export const getCertificationList = () => {
+    const options = {method: 'GET', headers: {accept: 'application/json'}};
+
+    return fetch(
+      fetch('https://api.themoviedb.org/3/certification/movie/list', options)
+    )
+    .then( (response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error
+   });
+  };
+

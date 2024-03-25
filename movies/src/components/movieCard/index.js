@@ -18,7 +18,7 @@ import img from '../../images/film-poster-placeholder.png'
 import { MoviesContext } from "../../contexts/moviesContext";
 import AddToPlaylistIcon from '../cardIcons/addToPlaylist';
 
-export default function MovieCard({ movie, action}) {
+export default function MovieCard({ movie, action,creditsid}) {
   const { favorites, addToFavorites, playlists, addToPlaylist } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
@@ -40,7 +40,7 @@ export default function MovieCard({ movie, action}) {
 
   const handleAddToPlaylist = (e) => {
     e.preventDefault();
-    AddToPlaylistIcon(movie);
+    addToPlaylist(movie);
   };
 
  
@@ -52,6 +52,13 @@ export default function MovieCard({ movie, action}) {
           movie.favorite ? (
             <Avatar sx={{ backgroundColor: 'red' }}>
               <FavoriteIcon />
+            </Avatar>
+          ) : null
+        }
+        action={
+          movie.playlist ? (
+            <Avatar sx={{ backgroundColor: 'red' }}>
+              <PlaylistAddIcon />
             </Avatar>
           ) : null
         }
