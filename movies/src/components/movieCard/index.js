@@ -55,9 +55,12 @@ export default function MovieCard({ movie, action,creditsid}) {
             </Avatar>
           ) : null
         }
+        //tweaked the playlist button so that when clicked it will turn to pink (same process as above)
+        //Added 'action' element so that once clicked it will choose which action to be implemented
+        //Links with the 'upcoming page'
         action={
           movie.playlist ? (
-            <Avatar sx={{ backgroundColor: 'red' }}>
+            <Avatar sx={{ backgroundColor: 'pink' }}>
               <PlaylistAddIcon />
             </Avatar>
           ) : null
