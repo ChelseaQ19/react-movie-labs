@@ -1,19 +1,19 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
-import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
-import useMovie from "../hooks/useMovie";
+import useMovieCredits from "../hooks/useMovieCredits"
 
-const MoviePage = (props) => {
+
+const MovieCreditsPage = (props) => {
   const { id } = useParams();
-  const [movie] = useMovie(id);
+  const [credits] = useMovieCredits(id);
 
   return (
     <>
-      {movie ? (
+      {credits ? (
         <>
-          <PageTemplate movie={movie}>
-            <MovieDetails movie={movie}/>
+          <PageTemplate movie={credits}>
+            <MovieCreditsPage credits={credits}/>
           </PageTemplate>
         </>
       ) : (
@@ -23,4 +23,4 @@ const MoviePage = (props) => {
   );
 };
 
-export default MoviePage;
+export default MovieCreditsPage;

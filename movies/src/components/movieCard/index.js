@@ -18,7 +18,7 @@ import img from '../../images/film-poster-placeholder.png'
 import { MoviesContext } from "../../contexts/moviesContext";
 import AddToPlaylistIcon from '../cardIcons/addToPlaylist';
 
-export default function MovieCard({ movie, action,creditsid}) {
+export default function MovieCard({ movie, action, credits }) {
   const { favorites, addToFavorites, playlists, addToPlaylist } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
@@ -66,7 +66,7 @@ export default function MovieCard({ movie, action,creditsid}) {
           ) : null
         }
         title={
-          <Typography variant="h5" component="p">
+          <Typography variant="h5" component="p" fontFamily={"Arial"}>
             {movie.title}{" "}
           </Typography>
         }
@@ -100,6 +100,11 @@ export default function MovieCard({ movie, action,creditsid}) {
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
+          </Button>
+        </Link>
+        <Link to={`/credits/${credits.id}`}>
+          <Button variant="outlined" size="medium" color="primary">
+            Movie Credits ...
           </Button>
         </Link>
       </CardActions>

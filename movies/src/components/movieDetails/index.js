@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -24,8 +24,7 @@ const chip = { margin: 0.5 };
 const MovieDetails = ({ movie }) => {  // Don't miss this!
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-
-  return (
+ return (
     <>
       <Typography variant="h5" component="h3">
         Overview
@@ -40,7 +39,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         sx={{...root}}
       >
         <li>
-          <Chip label="Genres" sx={{...chip}} color="primary" />
+          <Chip label="Genres" sx={{...chip}} color="secondary" />
         </li>
         {movie.genres.map((g) => (
           <li key={g.name}>
@@ -60,11 +59,13 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         />
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
+
       <Fab
         color="secondary"
         variant="extended"
         onClick={() =>setDrawerOpen(true)}
         sx={{
+          fontFamily: 'Arial',
           position: 'fixed',
           bottom: '1em',
           right: '1em'
