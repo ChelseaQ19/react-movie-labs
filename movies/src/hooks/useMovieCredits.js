@@ -6,14 +6,14 @@ import useMovieCredits from "../hooks/useMovieCredits"
 
 const MovieCreditsPage = (props) => {
   const { id } = useParams();
-  const [credits] = useMovieCredits(id);
+  const [ credits ] = useMovieCredits(id);
 
   return (
     <>
       {credits ? (
         <>
-          <PageTemplate movie={credits}>
-            <MovieCreditsPage credits={credits}/>
+          <PageTemplate movieCredits={credits}>
+          
           </PageTemplate>
         </>
       ) : (

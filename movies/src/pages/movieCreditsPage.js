@@ -26,12 +26,12 @@ const MovieCreditsPage = (props) => {
     <>
       {credits ? (
         <>
-          <PageTemplate movie={credits}>
-            <MovieCreditsPage credits={credits}/>
+          <PageTemplate movieCredits={credits}>
+          
           </PageTemplate>
         </>
       ) : (
-        <p>Waiting for movie details</p>
+        <p>Waiting for Credit details</p>
       )}
     </>
   );

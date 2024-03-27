@@ -57,7 +57,7 @@ export default function MovieCard({ movie, action, credits }) {
         }
         //tweaked the playlist button so that when clicked it will turn to pink (same process as above)
         //Added 'action' element so that once clicked it will choose which action to be implemented
-        //Links with the 'upcoming page'
+        //Links with the 'upcoming page', 'popular page', and 'top-rated' page
         action={
           movie.playlist ? (
             <Avatar sx={{ backgroundColor: 'pink' }}>
@@ -82,13 +82,13 @@ export default function MovieCard({ movie, action, credits }) {
       <CardContent>
         <Grid container>
           <Grid item xs={6}>
-            <Typography variant="h6" component="p">
+            <Typography variant="h6" component="p" fontFamily={"Arial"}>
               <CalendarIcon fontSize="small" />
               {movie.release_date}
             </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="h6" component="p">
+            <Typography variant="h6" component="p" fontFamily>={"Arial"}
               <StarRateIcon fontSize="small" />
               {"  "} {movie.vote_average}{" "}
             </Typography>
@@ -102,7 +102,7 @@ export default function MovieCard({ movie, action, credits }) {
             More Info ...
           </Button>
         </Link>
-        <Link to={`/credits/${credits.id}`}>
+        <Link to={`/credits/${movie.id}`}> 
           <Button variant="outlined" size="medium" color="primary">
             Movie Credits ...
           </Button>
