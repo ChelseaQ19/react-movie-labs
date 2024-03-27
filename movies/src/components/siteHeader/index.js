@@ -15,7 +15,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 const theme = createTheme({ //creating typograhy themes from Material UI
   typography: {
     fontFamily: [
-      'Montserrat', 
       'Arial', // Generalised Font
       'sans-serif',
     ].join(','),
@@ -56,11 +55,11 @@ const SiteHeader = ({ history }) => {
     <>
       <AppBar position="fixed" color="secondary">
         <Toolbar>
-          <Typography variant="h4" sx={{ flexGrow: 1, fontFamily: 'Arial' , }}>
-            TMDB Client
+          <Typography variant="h4" sx={{ flexGrow: 1, fontFamily: 'Arial' }}>
+            Chelsea's Movie Client
           </Typography>
           <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Arial' }}>
-            All you ever wanted to know about Movies!
+             Movies and More!
           </Typography>
             {isMobile ? (
               <>
