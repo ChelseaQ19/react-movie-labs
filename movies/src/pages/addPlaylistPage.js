@@ -4,6 +4,8 @@ import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from "react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
+import RemoveFromPlaylists from "../components/cardIcons/removeFromPlaylists";
+import WriteReview from "../components/cardIcons/writeReview";
 
 
 const AddPlaylistPage = () => {
@@ -37,6 +39,12 @@ const AddPlaylistPage = () => {
       title="My Playlist"
       movies={movies}
       action={(movie) => {
+        return (
+          <>
+            <RemoveFromPlaylists movie={movie} />
+            <WriteReview movie={movie} />
+          </>
+        );
       }}
     />
   );
