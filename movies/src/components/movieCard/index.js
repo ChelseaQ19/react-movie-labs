@@ -18,8 +18,9 @@ import img from '../../images/film-poster-placeholder.png'
 import { MoviesContext } from "../../contexts/moviesContext";
 import AddToPlaylistIcon from '../cardIcons/addToPlaylist';
 import { getMovieChanges } from '../../api/tmdb-api'; //implementing the 'getMovieChanges' API
+ 
 
-export default function MovieCard({ movie, action, credits  }) {
+export default function MovieCard({ movie, action }) {
   const { favorites, addToFavorites, playlists, addToPlaylist } = useContext(MoviesContext);
   const [changes, setChanges] = useState([]); //adding the 'useState' for the movie changes
   
@@ -36,6 +37,7 @@ export default function MovieCard({ movie, action, credits  }) {
         console.error("Error with movie changes:", error);
       }); //took some code from API's to catch errors.
   }, [movie.id]);
+
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;

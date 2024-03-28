@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useParams } from 'react-router-dom';
 import PageTemplate from "../components/templateMoviePage";
 import { getMovie } from "../api/tmdb-api";
@@ -9,6 +9,7 @@ import Spinner from '../components/spinner'
 
 const MovieCreditsPage = (props) => {
   const { id } = useParams();
+  
 
   const { data:  credits, creditsiserror, creditsisLoading, creditsisError } = useQuery(
     ["credits", { id: id }],

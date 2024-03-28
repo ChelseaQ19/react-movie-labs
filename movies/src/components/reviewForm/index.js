@@ -85,6 +85,10 @@ const ReviewForm = ({ movie }) => {
     setRating(event.target.value);
   };
 
+  const handleDeleteRating = (event) => {
+    setRating(0);
+  };
+
   const [open, setOpen] = useState(false); 
   const navigate = useNavigate();
 
@@ -203,7 +207,19 @@ const ReviewForm = ({ movie }) => {
           )}
         />
 
+
+
         <Box sx={styles.buttons}>
+
+        <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            onClick={handleDeleteRating}
+            sx={styles.submit}
+          >
+            Delete Rating
+          </Button>
           <Button
             type="submit"
             variant="contained"

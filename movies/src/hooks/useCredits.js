@@ -1,13 +1,25 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useParams } from 'react-router-dom';
-import { getCredits } from "../api/tmdb-api" 
+import { getCredits } from "../api/tmdb-api" ;
+import { useMovie } from "../hooks/useMovie";
 import PageTemplate from "../components/templateMoviePage";
 import { useCredits } from "../hooks/useCredits";
 
 
 const MovieCreditsPage = (props) => {
   const { id } = useParams();
-  const [ movie ] = useCredits(id);
+  const [ movie ] = useMovie(id);
+  
+  const [credit, setCredit] = useState([]);
+
+  useEffect(() => {
+    getCredits(movie.id).then((credits) => {
+      setCredit(credits);
+    })
+    .catch((error) => {
+     console.error("Error with credits", error);
+    });
+  }, [movie.id]);
 
 
   return (
