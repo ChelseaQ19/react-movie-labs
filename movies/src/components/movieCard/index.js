@@ -18,11 +18,13 @@ import img from '../../images/film-poster-placeholder.png'
 import { MoviesContext } from "../../contexts/moviesContext";
 import AddToPlaylistIcon from '../cardIcons/addToPlaylist';
 import { getMovieChanges } from '../../api/tmdb-api'; //implementing the 'getMovieChanges' API
+import { getLatest } from "../../api/tmdb-api";
  
 
 export default function MovieCard({ movie, action }) {
   const { favorites, addToFavorites, playlists, addToPlaylist } = useContext(MoviesContext);
   const [changes, setChanges] = useState([]); //adding the 'useState' for the movie changes
+  const [latest, setLatest] = useState([]);
   
 
 //using the 'useEffect' to fetch the data and the browser console.log to log results to see whether it has fetched the data or not
@@ -36,6 +38,19 @@ export default function MovieCard({ movie, action }) {
       .catch((error) => {
         console.error("Error with movie changes:", error);
       }); //took some code from API's to catch errors.
+  }, [movie.id]);
+
+ //getLatest function
+  useEffect(() => { 
+
+    console.log("Fetching latest movie ID's:", movie.id); //useState stores results of the API 
+     getLatest(movie.id).then((results)  => {
+        console.log("Movie changes:", results);
+        setLatest(results);
+      })
+      .catch((error) => {
+        console.error("Error with latest ID's:", error);
+      }); 
   }, [movie.id]);
 
 
