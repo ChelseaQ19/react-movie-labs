@@ -22,7 +22,8 @@ const MoviePage = (props) => {
   );
 
 
-  if (isLoading || recisLoading  ) {//Adding the 'videos' and OR operator for the spinner. If both are false, then the spinner will not render.
+
+  if (isLoading || recisLoading ) {//Adding the 'videos' and OR operator for the spinner. If both are false, then the spinner will not render.
     return <Spinner />;
   };
 
@@ -35,7 +36,7 @@ const MoviePage = (props) => {
       {movie ? (
         <>
           <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} recommendations={recommendations}/>
+            <MovieDetails movie={movie} recommendations={recommendations} />
           </PageTemplate>
         </>
       ) : (

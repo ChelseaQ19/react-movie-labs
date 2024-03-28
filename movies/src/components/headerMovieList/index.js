@@ -17,6 +17,7 @@ const Header = (props ) => {
         justifyContent: "space-around",
         flexWrap: "wrap",
         marginBottom: 1.5,
+      
       }}
       >
         <IconButton aria-label="go back" onClick={() => navigate(-1)}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -9,6 +9,7 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
+import { useParams } from "react-router-dom";
 
 
 const root = {
@@ -21,8 +22,10 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
+const MovieDetails = ({ movie, recommendations }) => {  // Passing the 'recommendations' ID
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  
 
  return (
     <>
@@ -60,12 +63,25 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
 
+      
+      <Paper component="ul" sx={{ ...root }} >
+      <Typography variant="h5" component="h3">
+      
+        
+        <Typography variant="h6" component="p">
+         
+      </Typography>
+        
+      </Typography>
+   
+      </Paper>
+
       <Fab
         color="secondary"
         variant="extended"
         onClick={() =>setDrawerOpen(true)}
         sx={{
-          fontFamily: 'Arial',
+          
           position: 'fixed',
           bottom: '1em',
           right: '1em'

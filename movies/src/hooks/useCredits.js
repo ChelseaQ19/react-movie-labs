@@ -1,25 +1,25 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
-import { useMovie } from "../api/tmdb-api" //retrieving the useMovie API
-import { getMovieCreditImages } from "../api/tmdb-api";
+import { getCredits } from "../api/tmdb-api" 
 import PageTemplate from "../components/templateMoviePage";
-import useMovieCredits from "../hooks/useMovieCredits"
+import { useCredits } from "../hooks/useCredits";
 
 
 const MovieCreditsPage = (props) => {
   const { id } = useParams();
-  const [ credits ] = useMovieCredits(id);
+  const [ movie ] = useCredits(id);
+
 
   return (
     <>
-      {credits ? (
+      {movie ? (
         <>
-          <PageTemplate movieCredits={credits}>
+          <PageTemplate movie={movie}>
           
           </PageTemplate>
         </>
       ) : (
-        <p>Waiting for movie details</p>
+        <p>Waiting for movie credits</p>
       )}
     </>
   );

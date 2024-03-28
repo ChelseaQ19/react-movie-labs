@@ -12,14 +12,6 @@ import { styled } from '@mui/material/styles';
 import { createTheme, useTheme } from "@mui/material/styles"; //Creating themes from Material UI
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const theme = createTheme({ //creating typograhy themes from Material UI
-  typography: {
-    fontFamily: [
-      'Arial', // Generalised Font
-      'sans-serif',
-    ].join(','),
-  },
-});
 
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);

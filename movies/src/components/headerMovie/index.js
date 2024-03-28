@@ -23,20 +23,20 @@ const MovieHeader = (props) => {
         }}
       >
       <IconButton aria-label="go back" onClick={() => navigate(-1)} >
-        <ArrowBackIcon color="primary" fontSize="large" />
+        <ArrowBackIcon color="secondary" fontSize="large" />
       </IconButton>
 
-      <Typography variant="h4" component="h3">
+      <Typography variant="h4" component="h3" fontFamily={"Arial"}>
         {movie.title}
         <a href={movie.homepage}>
-          <HomeIcon color="primary" />
+          <HomeIcon color="secondary" />
         </a>
         <br />
-        <span sx={{ fontSize: "1.5rem" }}>{`   "${movie.tagline}"`} </span>
+        <span sx={{ fontSize: "1.5rem", fontFamily: "Arial"}}>{`   "${movie.tagline}"`} </span>
       </Typography>
 
       <IconButton aria-label="go forward" onClick={() => navigate(+1) } >
-        <ArrowForwardIcon color="primary" fontSize="large" />
+        <ArrowForwardIcon color="secondary" fontSize="large" />
       </IconButton>
     </Paper>
   );

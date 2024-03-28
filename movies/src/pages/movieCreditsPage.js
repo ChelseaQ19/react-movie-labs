@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from 'react-router-dom';
 import PageTemplate from "../components/templateMoviePage";
 import { getMovie } from "../api/tmdb-api";
-import { getMovieCredits } from "../api/tmdb-api"; 
+import { getCredits } from "../api/tmdb-api"; 
 import { getMovieCreditImages } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
@@ -12,7 +12,7 @@ const MovieCreditsPage = (props) => {
 
   const { data:  credits, creditsiserror, creditsisLoading, creditsisError } = useQuery(
     ["credits", { id: id }],
-    getMovieCredits
+    getCredits
   );
 
   const { data:  movie, iserror,  isLoading, isError } = useQuery(
@@ -39,10 +39,10 @@ const MovieCreditsPage = (props) => {
 
   return (
     <>
-      {credits ? (
+      {movie ? (
         <>
-          <PageTemplate MovieCreditsPage={credits} movie={movie} images={images}>
-          
+         <PageTemplate movie={movie} credits={credits} images={images}>
+      
           </PageTemplate>
         </>
       ) : (

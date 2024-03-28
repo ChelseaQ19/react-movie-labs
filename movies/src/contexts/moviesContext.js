@@ -9,6 +9,9 @@ const MoviesContextProvider = (props) => {
 
   const [myReviews, setMyReviews] = useState( {} ) 
 
+  const[credits, setCredits]= useState(null) //storing the movie credits
+
+
   const addToFavorites = (movie) => {
     let newFavorites = [];
     if (!favorites.includes(movie.id)){
@@ -58,6 +61,7 @@ const MoviesContextProvider = (props) => {
     value={{
       favorites,
       playlists,
+      credits,
       addToPlaylist,
       addToFavorites,
       removeFromFavorites,

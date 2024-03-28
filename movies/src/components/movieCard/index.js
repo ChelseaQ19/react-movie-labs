@@ -1,6 +1,6 @@
 import Avatar from '@mui/material/Avatar';
 import { Link } from "react-router-dom";
-import React , { useContext } from "react";
+import React , { useContext, useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -17,9 +17,25 @@ import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import { MoviesContext } from "../../contexts/moviesContext";
 import AddToPlaylistIcon from '../cardIcons/addToPlaylist';
+import { getMovieChanges } from '../../api/tmdb-api'; //implementing the 'getMovieChanges' API
 
-export default function MovieCard({ movie, action, credits }) {
+export default function MovieCard({ movie, action, credits  }) {
   const { favorites, addToFavorites, playlists, addToPlaylist } = useContext(MoviesContext);
+  const [changes, setChanges] = useState([]); //adding the 'useState' for the movie changes
+  
+
+//using the 'useEffect' to fetch the data and the browser console.log to log results to see whether it has fetched the data or not
+  useEffect(() => { 
+
+    console.log("Fetching movie changes:", movie.id); //useState stores results of the API 
+     getMovieChanges(movie.id).then((results)  => {
+        console.log("Movie changes:", results);
+        setChanges(results);
+      })
+      .catch((error) => {
+        console.error("Error with movie changes:", error);
+      }); //took some code from API's to catch errors.
+  }, [movie.id]);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -82,13 +98,13 @@ export default function MovieCard({ movie, action, credits }) {
       <CardContent>
         <Grid container>
           <Grid item xs={6}>
-            <Typography variant="h6" component="p" fontFamily={"Arial"}>
+            <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
               {movie.release_date}
             </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="h6" component="p" fontFamily>={"Arial"}
+            <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
               {"  "} {movie.vote_average}{" "}
             </Typography>
@@ -98,13 +114,13 @@ export default function MovieCard({ movie, action, credits }) {
       <CardActions disableSpacing>
         {action(movie)}
         <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            More Info ...
+          <Button variant="outlined" size="medium" color="secondary">
+            More Info 
           </Button>
         </Link>
         <Link to={`/credits/${movie.id}`}> 
-          <Button variant="outlined" size="medium" color="primary">
-            Movie Credits ...
+          <Button variant="outlined" size="medium" color="secondary">
+            Movie Credits 
           </Button>
         </Link>
       </CardActions>
