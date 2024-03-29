@@ -117,6 +117,17 @@ export const getLatest = (id) => {
     });
 };
 
+export const getSimilar = (id) => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.REACT_APP_TMDB_KEY}`
+  )
+    .then((res) => res.json())
+    .then((json) => {
+      // console.log(json.results);
+      return json.results;
+    });
+};
+
 export const getMovieChanges = (id) => {
   return fetch(
     `https://api.themoviedb.org/3/movie/${id}/changes?api_key=${process.env.REACT_APP_TMDB_KEY}`

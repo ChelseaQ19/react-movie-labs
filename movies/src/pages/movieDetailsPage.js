@@ -1,14 +1,17 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { useParams } from 'react-router-dom';
 import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
 import { getMovie } from "../api/tmdb-api";
 import { getMovieRecommendations } from "../api/tmdb-api";
+import { getSimilar } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 
 const MoviePage = (props) => {
   const { id } = useParams();
+
+
 
   const { data: movie, error, isLoading, isError } = useQuery(
     ["movie", { id: id }],
@@ -21,8 +24,7 @@ const MoviePage = (props) => {
     getMovieRecommendations
   );
 
-
-
+  
   if (isLoading || recisLoading ) {//Adding the 'videos' and OR operator for the spinner. If both are false, then the spinner will not render.
     return <Spinner />;
   };

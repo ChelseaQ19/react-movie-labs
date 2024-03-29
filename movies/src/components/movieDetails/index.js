@@ -9,6 +9,7 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
+import { getSimilar } from "../../api/tmdb-api";
 import { useParams } from "react-router-dom";
 
 
@@ -23,11 +24,25 @@ const root = {
 const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie, recommendations }) => {  // Passing the 'recommendations' ID
+  const {id}= useParams();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [similar, setSimilar] = useState([]);
 
   
 
- return (
+useEffect(() => { 
+
+   if (movie) { 
+   getSimilar(movie.id).then((results)  => {
+      setSimilar(results);
+    });
+  }
+   
+}, [movie]);
+
+
+
+return (
     <>
       <Typography variant="h5" component="h3">
         Overview
@@ -65,14 +80,12 @@ const MovieDetails = ({ movie, recommendations }) => {  // Passing the 'recommen
 
       
       <Paper component="ul" sx={{ ...root }} >
-      <Typography variant="h5" component="h3">
-      
-        
-        <Typography variant="h6" component="p">
-         
-      </Typography>
-        
-      </Typography>
+  
+      {similar.map((similarMovie) => (
+          <li key={similarMovie.id}>
+            <Chip label={similarMovie.title} sx={{...chip}} />
+          </li>
+        ))}
    
       </Paper>
 
