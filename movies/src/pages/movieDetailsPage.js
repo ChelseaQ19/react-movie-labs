@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
 import { getMovie } from "../api/tmdb-api";
-import { getMovieRecommendations } from "../api/tmdb-api";
+import { getRecommendations } from "../api/tmdb-api";
 import { getSimilar } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
@@ -21,7 +21,7 @@ const MoviePage = (props) => {
 
   const { data: recommendations, reciserror, recisLoading, recisError } = useQuery(
     ["recommendations", { id: id }],
-    getMovieRecommendations
+    getRecommendations
   );
 
   

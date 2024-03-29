@@ -65,7 +65,7 @@ export const getPopularMovies = () => {
     });
 };
 
-export const getMovieRecommendations = (id) => {
+export const getRecommendations = (id) => {
   return fetch(
     `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.REACT_APP_TMDB_KEY}`
   )
@@ -138,7 +138,6 @@ export const getMovieChanges = (id) => {
       return json.results;
     });
 };
-
 
  export const getGenres = async () => {
     return fetch(

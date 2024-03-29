@@ -10,7 +10,9 @@ import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
 import { getSimilar } from "../../api/tmdb-api";
+import { getRecommendations } from "../../api/tmdb-api";
 import { useParams } from "react-router-dom";
+
 
 
 const root = {
@@ -23,13 +25,13 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie, recommendations }) => {  // Passing the 'recommendations' ID
-  const {id}= useParams();
+const MovieDetails = ({ movie }) => {  // Passing the 'recommendations' ID
+  const { id }= useParams();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [similar, setSimilar] = useState([]);
+  const [recommendations, setRecommendations] = useState([]); 
 
   
-
 useEffect(() => { 
 
    if (movie) { 
@@ -38,6 +40,16 @@ useEffect(() => {
     });
   }
    
+}, [movie]);
+
+useEffect(() => { 
+
+  if (movie) { 
+  getRecommendations(movie.id).then((results)  => {
+     setRecommendations(results);
+   });
+ }
+  
 }, [movie]);
 
 
@@ -83,11 +95,29 @@ return (
   
       {similar.map((similarMovie) => (
           <li key={similarMovie.id}>
-            <Chip label={similarMovie.title} sx={{...chip}} />
+            <Chip label={similarMovie.title} sx={{...chip}} /> 
           </li>
         ))}
    
       </Paper>
+
+      <Paper component="ul" sx={{ ...root }} >
+
+      <Typography variant="h5" component="h3">
+        Recommendations
+      </Typography>
+    {recommendations.map((recommendation) => 
+    <li key={recommendations.id}>
+       <Typography variant="h5" component="h3">
+         Title: {recommendation.title}
+      </Typography>
+      <Typography variant="h5" component="h3">
+         Overview: {recommendation.overview}
+      </Typography>
+    </li>
+    )}
+
+  </Paper>
 
       <Fab
         color="secondary"

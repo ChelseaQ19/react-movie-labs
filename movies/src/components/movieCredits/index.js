@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
 import { useQuery } from "react-query";
-import { getMovieCredits } from "../../api/tmdb-api"
+import { getCredits } from "../../api/tmdb-api"
 
 
 const root = {
@@ -24,11 +24,17 @@ const root = {
 
 const MovieCredits = ({ movie ,images }) => {  // Don't miss this!
   const [drawerOpen, setDrawerOpen] = useState(false);
-  
-  const { credits , creditsiserror, creditsisLoading, creditsisError } = useQuery(
-    ["credits", { id: movie.id }],
-    getMovieCredits
-  );
+  const [credits, setCredits] = useState([]);
+
+  useEffect(() => { 
+
+    if (movie.id) { 
+    getCredits(movie.id).then((results)  => {
+       setCredits(results);
+     });
+   }
+    
+  }, [movie]);
 
  return (
     <>
@@ -39,9 +45,9 @@ const MovieCredits = ({ movie ,images }) => {  // Don't miss this!
       <Typography variant="h5" component="h3" fontFamily={"Arial"}>
         Movie Credits
        {credits && 
-       credits.map((credit) => //implementing the map like the return to display the credits.
+       credits.map((credit) =>
        <li key={credit.id}>
-        <Chip label={credit.name} sx={{ margin: 0.1}} />
+        <Chip label={credit.title} sx={{ margin: 0.1}} />
        </li>
        )}
       </Typography>
